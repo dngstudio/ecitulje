@@ -204,7 +204,7 @@ add_action( 'after_setup_theme', 'register_navwalker' );
 
 
 function google_fonts() {
-    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap', false );
+    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=EB+Garamond&family=Roboto+Condensed:wght@700&display=swap', false );
 }
 add_action( 'wp_enqueue_scripts', 'google_fonts' );
 

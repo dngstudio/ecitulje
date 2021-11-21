@@ -1,5 +1,10 @@
-h2 {
-    font-family: "Spartan", sans-serif;
-}
+//colors
+
+$primary:black;
+$secondary: #6c757d;
+$font-family-base: 'EB Garamond', serif;
+$headings-font-family:'Roboto Condensed', sans-serif;
+$headings-color: $primary;
+$link-color: $secondary;
 
 @import './bootstrap/scss/bootstrap';

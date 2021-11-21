@@ -11,7 +11,7 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer bg-dark">
+	<footer id="colophon" class="site-footer bg-black">
 		<div class="container pb-2 pt-5">
 			<div class="site-info text-center text-white">
 				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'ecitulje' ) ); ?>">
