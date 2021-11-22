@@ -1,10 +1,47 @@
 //colors
-
 $primary:black;
 $secondary: #6c757d;
 $font-family-base: 'EB Garamond', serif;
 $headings-font-family:'Roboto Condensed', sans-serif;
 $headings-color: $primary;
-$link-color: $secondary;
+$list-group-bg: rgba(0,0,0,0);
+$light: #e9ecef;
+$border-color: $primary;
+$dropdown-border-color:$primary;
+
+footer a {
+    color: $light;
+}
+
+//spacing
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+) !default;
+
+$list-group-item-padding-x: 0px;
+$list-group-item-padding-y: $spacer * .25;
+
+
+$link-decoration: none;
+$link-hover-decoration: underline;
+$link-hover-color: $secondary;
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+  }
+
+#logo {
+  max-width: 70%;
+  max-height: 70%;
+  width: auto;
+  height: auto;
+}
 
 @import './bootstrap/scss/bootstrap';
