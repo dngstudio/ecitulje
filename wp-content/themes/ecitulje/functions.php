@@ -151,7 +151,11 @@ function ecitulje_scripts() {
 	wp_enqueue_script( 'ecitulje-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 
-	wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/bootstrap/bootstrap.bundle.min.css', array(), 1.1, true );
+	wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.3.1.slim.min.js', array( 'jquery' ),'',true );
+    wp_enqueue_script( 'boot2','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array( 'jquery' ),'',true );
+    wp_enqueue_script( 'boot3','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array( 'jquery' ),'',true );
+
+	wp_enqueue_script( 'customjs', get_template_directory_uri() . '/scripts.js', array( 'jquery' ),'',true);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -208,4 +212,113 @@ function google_fonts() {
 }
 add_action( 'wp_enqueue_scripts', 'google_fonts' );
 
+
+
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+// Umrlice Post Type
+function create_posttype() {
+ 
+    register_post_type( 'objave',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Objave' ),
+                'singular_name' => __( 'Objava' ),
+				'add_new'             => __( 'Dodaj novu'),
+				'edit_item'           => __( 'Uredi objavu'),
+				'all_items'           => __( 'Sve objave'),
+            ),
+			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields'),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'objave'),
+            'show_in_rest' => true,
+			'taxonomies'          => array( 'kategorije', 'mesto', 'datum' ),
+        	'hierarchical'        => true,
+			'menu_icon'           => 'dashicons-plus',
+			'show_in_admin_bar'   => true,
+ 
+        )
+    );
+}
+
+
+
+add_action( 'init', 'custom_taxonomy', 0 );
+ 
+//create a custom taxonomy name it "type" for your posts
+function custom_taxonomy() {
+ 
+  $labelsTipovi = array(
+    'name' => _x( 'Tipovi', 'taxonomy general name' ),
+    'singular_name' => _x( 'Tip', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Types' ),
+    'all_items' => __( 'Svi tipovi' ),
+    'parent_item' => __( 'Parent Type' ),
+    'parent_item_colon' => __( 'Parent Type:' ),
+    'edit_item' => __( 'Uredi tip' ), 
+    'update_item' => __( 'Ažuriraj tip' ),
+    'add_new_item' => __( 'Dodaj novi tip' ),
+    'new_item_name' => __( 'Novi tip' ),
+    'menu_name' => __( 'Tipovi' ),
+  ); 	
+ 
+  register_taxonomy('tipovi',array('objave'), array(
+    'hierarchical' => true,
+    'labels' => $labelsTipovi,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'tip' ),
+  ));
+
+
+  $labelsDrzava = array(
+    'name' => _x( 'Države', 'taxonomy general name' ),
+    'singular_name' => _x( 'Država', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Types' ),
+    'all_items' => __( 'Sve države' ),
+    'parent_item' => __( 'Parent Type' ),
+    'parent_item_colon' => __( 'Parent Type:' ),
+    'edit_item' => __( 'Uredi državu' ), 
+    'update_item' => __( 'Ažuriraj državu' ),
+    'add_new_item' => __( 'Dodaj novu državu' ),
+    'new_item_name' => __( 'Nova država' ),
+    'menu_name' => __( 'Države' ),
+  ); 	
+ 
+  register_taxonomy('drzava',array('objave'), array(
+    'hierarchical' => true,
+    'labels' => $labelsDrzava,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'drzava' ),
+  ));
+
+   
+  $labelsMesto = array(
+    'name' => _x( 'Mesta', 'taxonomy general name' ),
+    'singular_name' => _x( 'Mesto', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Types' ),
+    'all_items' => __( 'Sva mesta' ),
+    'parent_item' => __( 'Parent Type' ),
+    'parent_item_colon' => __( 'Parent Type:' ),
+    'edit_item' => __( 'Uredi mesto' ), 
+    'update_item' => __( 'Ažuriraj mesto' ),
+    'add_new_item' => __( 'Dodaj novo mesto' ),
+    'new_item_name' => __( 'Novo mesto' ),
+    'menu_name' => __( 'Mesta' ),
+  ); 	
+ 
+  register_taxonomy('mesto',array('objave'), array(
+    'hierarchical' => true,
+    'labels' => $labelsMesto,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'mesto' ),
+  ));
+}
 

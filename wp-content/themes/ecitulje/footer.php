@@ -12,6 +12,36 @@
 ?>
 
 	<footer id="colophon" class="site-footer bg-black">
+		<div class="container pt-5">
+			<div class="row">
+				<div class="col">
+					<h5 class="text-white">Najvažnije stranice</h5>
+					<ul class="list-group list-group-flush footer-list bg-black">
+						<li class="list-group-item text-light"><a href="">Naslovna</a></li>
+						<li class="list-group-item text-light"><a href="">Sve objave</a></li>
+						<li class="list-group-item text-light"><a href="">Kategorije</a></li>
+						<li class="list-group-item text-light"><a href="">Najnovije</a></li>
+						<li class="list-group-item text-light"><a href="">Dodajte svoju objavu</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5 class="text-white">Za korisnike</h5>
+					<ul class="list-group list-group-flush footer-list bg-black">
+						<li class="list-group-item text-light"><a href="">Kako se postavlja objava?</a></li>
+						<li class="list-group-item text-light"><a href="">Cenovnik</a></li>
+						<li class="list-group-item text-light"><a href="">Načini plaćanja</a></li>
+						<li class="list-group-item text-light"><a href="">Korisne informacije</a></li>
+						<li class="list-group-item text-light"><a href="">Kontaktirajte podršku</a></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5 class="text-white">O nama</h5>
+				</div>
+				<div class="col">
+					<h5 class="text-white">fwfaw</h5>
+				</div>
+			</div>
+		</div>
 		<div class="container pb-2 pt-5">
 			<div class="site-info text-center text-white">
 				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'ecitulje' ) ); ?>">

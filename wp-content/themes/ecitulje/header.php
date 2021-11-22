@@ -28,7 +28,6 @@
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
-			the_custom_logo();
 			if ( is_front_page() && is_home() ) :
 				?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -46,40 +45,32 @@
 		</div><!-- .site-branding -->
 
 		<!-- #site-navigation -->
-		<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
-			<div class="container">
-
-				<div class="row">
-					<div class="col-12">
-						<a class="navbar-brand" href="#">Navbar</a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'your-theme-slug' ); ?>">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-					</div>
-				</div>
-			
-
-				<div class="row">
-					<div class="col-12">
-						<?php
-						wp_nav_menu( array(
-							'theme_location'    => 'menu-1',
-							'depth'             => 2,
-							'container'         => 'div',
-							'container_class'   => 'collapse navbar-collapse',
-							'container_id'      => 'bs-example-navbar-collapse-1',
-							'menu_class'        => 'nav navbar-nav',
-							'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-							'walker'            => new WP_Bootstrap_Navwalker(),
-						) );
-						?>
-					</div>
-					
-				</div>
-			
-				
+		<nav class="navbar navbar-expand-md" role="navigation">
+			<div class="row mx-auto">
+				<a class="navbar-brand mt-4" href="#"><img src="http://localhost/ecitulje/wp-content/uploads/2021/11/eCitulje-logo.png" alt="" id="logo" class="mx-auto d-block"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'your-theme-slug' ); ?>">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 			</div>
-			
+		</nav>
+		<nav class="navbar navbar-expand-md" role="navigation">
+			<div class="row mx-auto">
+				<div class="d-inline-flex">
+				<?php
+				wp_nav_menu( array(
+					'theme_location'    => 'menu-1',
+					'depth'             => 2,
+					'container'         => 'div',
+					'container_class'   => 'collapse navbar-collapse',
+					'container_id'      => 'bs-example-navbar-collapse-1',
+					'menu_class'        => 'nav navbar-nav',
+					'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+					'walker'            => new WP_Bootstrap_Navwalker(),
+				) );
+				?>
+				<a  class="btn btn-primary">Dodajte objavu</a>
+				</div>
+			</div>
 		</nav>
 	</header><!-- #masthead -->
 
