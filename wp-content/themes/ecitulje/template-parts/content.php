@@ -11,11 +11,34 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+	
+
 		<?php
+			$taxonomy = 'tipovi';
+			$terms = get_the_terms( $post->ID , 'tipovi' );
+			foreach ( $terms as $term ) { ?>
+			<div class="flair-wrapper">
+			<div class="flair"><a class="text-white" href="<?php echo get_term_link($term->slug, $taxonomy); ?>"><?php echo $term->name; ?></a></div>
+			</div>
+		<?php } ?>
+		
+
+
+
+	<div class="thumb">
+		
+		<?php if ( has_post_thumbnail() ) { 
+		the_post_thumbnail( 'thumbnail' ); 
+		} ?>
+	</div>
+
+	<p><?php the_field('datum_objave'); ?></p>
+
+	<?php
 		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
+			the_title( '<h1 class="entry-title mt-4">', '</h1>' );
 		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+			the_title( '<h2 class="entry-title mt-4"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
 
 		if ( 'post' === get_post_type() ) :
@@ -29,7 +52,7 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php ecitulje_post_thumbnail(); ?>
+	
 
 	<div class="entry-content">
 		<?php
@@ -48,6 +71,20 @@
 			)
 		);
 
+		?>
+
+
+						
+
+
+
+
+
+		
+		<p class="fw-bold">Ožalošćeni: <?php the_field('ozalosceni'); ?></p>
+
+
+		<?php
 		wp_link_pages(
 			array(
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'ecitulje' ),

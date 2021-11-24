@@ -154,6 +154,7 @@ function ecitulje_scripts() {
 	wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.3.1.slim.min.js', array( 'jquery' ),'',true );
     wp_enqueue_script( 'boot2','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array( 'jquery' ),'',true );
     wp_enqueue_script( 'boot3','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array( 'jquery' ),'',true );
+    wp_enqueue_script( 'masonry','https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', array( 'jquery' ),'',true );
 
 	wp_enqueue_script( 'customjs', get_template_directory_uri() . '/scripts.js', array( 'jquery' ),'',true);
 
@@ -229,7 +230,7 @@ function create_posttype() {
 				'edit_item'           => __( 'Uredi objavu'),
 				'all_items'           => __( 'Sve objave'),
             ),
-			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields'),
+			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields', 'comments'),
             'public' => true,
             'has_archive' => true,
             'rewrite' => array('slug' => 'objave'),
@@ -243,6 +244,8 @@ function create_posttype() {
     );
 }
 
+add_theme_support( 'post-thumbnails' );
+add_image_size( 'full-img', 220, 180 ); // Soft Crop Mode
 
 
 add_action( 'init', 'custom_taxonomy', 0 );
@@ -274,29 +277,6 @@ function custom_taxonomy() {
   ));
 
 
-  $labelsDrzava = array(
-    'name' => _x( 'Države', 'taxonomy general name' ),
-    'singular_name' => _x( 'Država', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Types' ),
-    'all_items' => __( 'Sve države' ),
-    'parent_item' => __( 'Parent Type' ),
-    'parent_item_colon' => __( 'Parent Type:' ),
-    'edit_item' => __( 'Uredi državu' ), 
-    'update_item' => __( 'Ažuriraj državu' ),
-    'add_new_item' => __( 'Dodaj novu državu' ),
-    'new_item_name' => __( 'Nova država' ),
-    'menu_name' => __( 'Države' ),
-  ); 	
- 
-  register_taxonomy('drzava',array('objave'), array(
-    'hierarchical' => true,
-    'labels' => $labelsDrzava,
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'drzava' ),
-  ));
-
    
   $labelsMesto = array(
     'name' => _x( 'Mesta', 'taxonomy general name' ),
@@ -321,4 +301,39 @@ function custom_taxonomy() {
     'rewrite' => array( 'slug' => 'mesto' ),
   ));
 }
+
+
+function comment_terms($arg) {
+   
+	$arg['comment_notes_after'] = "<p class='comment-policy'>Ovo polje služi isključivo za objavljivanje saučešća i poruke podrške porodici preminulog. Komentari moraju da budu u skladu sa našim <a href='pravila-i-uslovi-koriscenja'>uslovima korišćenja</a>.</p>";
+    $arg['submit_button'] = '<button class="btn btn-primary">Pošaljite izjavu</button>';
+    $arg['title_reply'] = 'Izjavite saučešće';
+	return $arg;
+}
+add_filter('comment_form_defaults', 'comment_terms');
+  
+
+add_filter( 'comment_form_fields', 'custom_comment_field' );
+function custom_comment_field( $fields ) {
+	$comment_field = $fields['comment'];
+    $author_field = $fields['author'];
+    $email_field = $fields['email'];
+    $url_field = $fields['url'];
+    $cookies_field = $fields['cookies'];
+
+    unset($fields['author']);
+    unset($fields['email']);
+    unset($fields['url']);
+    unset($fields['comment']);
+    unset($fields['cookies']);
+ 
+    $fields['author'] = '<p class="comment-form-author"><label for="author"></span></label><input type="text" id="author" name="author" require="required" placeholder="Ime i prezime"></p>';
+    $fields['comment'] = '<p class="comment-form-comment"><label for="comment"></span></label><textarea id="comment" name="comment" required="required" placeholder="Vaša izjava" style="width:100%" rows=3></textarea></p>';
+    return $fields;
+
+}
+
+
+
+
 

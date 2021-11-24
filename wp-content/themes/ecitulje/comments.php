@@ -21,30 +21,25 @@ if ( post_password_required() ) {
 ?>
 
 <div id="comments" class="comments-area">
+<div class="row">
+	<div class="col">
+		
+	<?php comment_form(); ?>
+
+	</div>
+	<div class="col">
+		
+	
+
+	
+
 
 	<?php
+	
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) :
 		?>
-		<h2 class="comments-title">
-			<?php
-			$ecitulje_comment_count = get_comments_number();
-			if ( '1' === $ecitulje_comment_count ) {
-				printf(
-					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'ecitulje' ),
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			} else {
-				printf( 
-					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $ecitulje_comment_count, 'comments title', 'ecitulje' ) ),
-					number_format_i18n( $ecitulje_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			}
-			?>
-		</h2><!-- .comments-title -->
+		
 
 		<?php the_comments_navigation(); ?>
 
@@ -52,7 +47,7 @@ if ( post_password_required() ) {
 			<?php
 			wp_list_comments(
 				array(
-					'style'      => 'ol',
+					'style'      => 'div',
 					'short_ping' => true,
 				)
 			);
@@ -71,7 +66,9 @@ if ( post_password_required() ) {
 
 	endif; // Check for have_comments().
 
-	comment_form();
+	
 	?>
+	</div>
+</div>
 
 </div><!-- #comments -->

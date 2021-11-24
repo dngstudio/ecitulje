@@ -47,7 +47,7 @@
 		<!-- #site-navigation -->
 		<nav class="navbar navbar-expand-md" role="navigation">
 			<div class="row mx-auto">
-				<a class="navbar-brand mt-4" href="#"><img src="http://localhost/ecitulje/wp-content/uploads/2021/11/eCitulje-logo.png" alt="" id="logo" class="mx-auto d-block"></a>
+				<a class="navbar-brand mt-4" href=""><img src="http://localhost/ecitulje/wp-content/uploads/2021/11/eCitulje-logo.png" alt="" id="logo" class="mx-auto d-block"></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'your-theme-slug' ); ?>">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -68,7 +68,7 @@
 					'walker'            => new WP_Bootstrap_Navwalker(),
 				) );
 				?>
-				<a  class="btn btn-primary">Dodajte objavu</a>
+				<a  class="btn btn-primary" href="dodajte-objavu">Dodajte objavu</a>
 				</div>
 			</div>
 		</nav>

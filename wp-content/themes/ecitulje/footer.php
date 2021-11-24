@@ -29,16 +29,22 @@
 					<ul class="list-group list-group-flush footer-list bg-black">
 						<li class="list-group-item text-light"><a href="">Kako se postavlja objava?</a></li>
 						<li class="list-group-item text-light"><a href="">Cenovnik</a></li>
-						<li class="list-group-item text-light"><a href="">Načini plaćanja</a></li>
+						<li class="list-group-item text-light"><a href="nacini-placanja">Načini plaćanja</a></li>
 						<li class="list-group-item text-light"><a href="">Korisne informacije</a></li>
 						<li class="list-group-item text-light"><a href="">Kontaktirajte podršku</a></li>
 					</ul>
 				</div>
 				<div class="col">
 					<h5 class="text-white">O nama</h5>
+					<ul class="list-group list-group-flush footer-list bg-black">
+						<li class="list-group-item text-light"><a href="pravila-i-uslovi-koriscenja">Uslovi korišćenja</a></li>
+						<li class="list-group-item text-light"><a href="">Politika privatnosti</a></li>
+						<li class="list-group-item text-light"><a href="">Podaci o preduzetniku</a></li>
+					</ul>
 				</div>
 				<div class="col">
-					<h5 class="text-white">fwfaw</h5>
+					<h5 class="text-white">Portal eČitulje</h5>
+					<p class="text-white"></p>
 				</div>
 			</div>
 		</div>
