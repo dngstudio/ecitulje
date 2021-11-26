@@ -20,7 +20,6 @@
 						<li class="list-group-item text-light"><a href="">Naslovna</a></li>
 						<li class="list-group-item text-light"><a href="">Sve objave</a></li>
 						<li class="list-group-item text-light"><a href="">Kategorije</a></li>
-						<li class="list-group-item text-light"><a href="">Najnovije</a></li>
 						<li class="list-group-item text-light"><a href="">Dodajte svoju objavu</a></li>
 					</ul>
 				</div>

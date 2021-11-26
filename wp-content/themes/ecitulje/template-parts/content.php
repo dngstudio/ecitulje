@@ -23,7 +23,17 @@
 		<?php } ?>
 		
 
-
+		<p style="margin:0px"><?php the_field('datum_objave'); ?></p>
+		
+		<?php
+			$taxonomy = 'mesto';
+			$terms = get_the_terms( $post->ID , 'mesto' );
+			foreach ( $terms as $term ) { ?>
+			<a href="<?php echo get_term_link($term->slug, $taxonomy); ?>"><?php echo $term->name; ?></a>
+		<?php } ?>
+		
+		<h4 class="my-3"><?php the_field('znak'); ?></h4>
+	
 
 	<div class="thumb">
 		
@@ -32,7 +42,7 @@
 		} ?>
 	</div>
 
-	<p><?php the_field('datum_objave'); ?></p>
+	
 
 	<?php
 		if ( is_singular() ) :
@@ -81,7 +91,7 @@
 
 
 		
-		<p class="fw-bold">Ožalošćeni: <?php the_field('ozalosceni'); ?></p>
+		<p class="fw-bold"><?php the_field('ozalosceni'); ?></p>
 
 
 		<?php

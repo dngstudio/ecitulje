@@ -142,6 +142,7 @@ add_action( 'widgets_init', 'ecitulje_widgets_init' );
 function ecitulje_scripts() {
 
 	wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/bootstrap/bootstrap.min.css', array(), 1.1 );
+	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/css/fontawesome.min.css', array(), 1.1 );
 	
 	wp_enqueue_style( 'sass', get_stylesheet_directory_uri() . '/main.css', array(), 1.1 );
 
@@ -151,10 +152,11 @@ function ecitulje_scripts() {
 	wp_enqueue_script( 'ecitulje-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 
-	wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.3.1.slim.min.js', array( 'jquery' ),'',true );
+	wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.6.0.min.js', array( 'jquery' ),'',true );
     wp_enqueue_script( 'boot2','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array( 'jquery' ),'',true );
     wp_enqueue_script( 'boot3','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', array( 'jquery' ),'',true );
     wp_enqueue_script( 'masonry','https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', array( 'jquery' ),'',true );
+    wp_enqueue_script( 'steps', get_template_directory_uri() . '/js/jquery.steps.min.js', array( 'jquery' ),'',true );
 
 	wp_enqueue_script( 'customjs', get_template_directory_uri() . '/scripts.js', array( 'jquery' ),'',true);
 
@@ -235,7 +237,7 @@ function create_posttype() {
             'has_archive' => true,
             'rewrite' => array('slug' => 'objave'),
             'show_in_rest' => true,
-			'taxonomies'          => array( 'kategorije', 'mesto', 'datum' ),
+			'taxonomies'          => array( 'tipovi', 'mesta' ),
         	'hierarchical'        => true,
 			'menu_icon'           => 'dashicons-plus',
 			'show_in_admin_bar'   => true,
@@ -333,7 +335,42 @@ function custom_comment_field( $fields ) {
 
 }
 
+// The shortcode function
+function publish_form() { 
+
+	get_template_part( 'template-parts/content', 'publish' );
+
+	 
+	}
+	// Register shortcode
+add_shortcode('publish_form', 'publish_form'); 
 
 
 
 
+
+function filter_projects() {
+	$mytax = $_POST['tipovi'];
+  
+	$ajaxposts = new WP_Query([
+	  'post_type' => 'objava',
+	  'posts_per_page' => -1,
+	  'category_name' => $mytax,
+	  'orderby' => 'menu_order', 
+	  'order' => 'desc',
+	]);
+	$response = '';
+  
+	if($ajaxposts->have_posts()) {
+	  while($ajaxposts->have_posts()) : $ajaxposts->the_post();
+		$response .= get_template_part('templates/_components/project-list-item');
+	  endwhile;
+	} else {
+	  $response = 'empty';
+	}
+  
+	echo $response;
+	exit;
+  }
+  add_action('wp_ajax_filter_projects', 'filter_projects');
+  add_action('wp_ajax_nopriv_filter_projects', 'filter_projects');
