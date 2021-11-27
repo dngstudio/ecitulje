@@ -28,4 +28,22 @@ form.steps({
 });
 
 
-  
+
+/* const cena = $("#cena")
+ */
+/* const velicina = $('input[name="velicinaobjave"]');
+ */
+
+
+$('input[name="velicinaobjave"]').change(function() {
+  var total = 0;
+  $('input[name="velicinaobjave"]:checked').each(function() {
+      total += parseFloat($(this).val());
+  });
+
+  $("#cena").html(total);
+});
+
+
+
+

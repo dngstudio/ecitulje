@@ -13,6 +13,16 @@ $dropdown-border-color:$primary;
     color: $light;
 }
 
+//buttons
+$input-btn-focus-box-shadow: none;
+$input-focus-box-shadow:none;
+$input-box-shadow:none;
+$btn-focus-box-shadow: none;
+
+input:focus{
+  outline:none;
+}
+
 //spacing
 $spacer: 1rem !default;
 $spacers: (
@@ -169,8 +179,11 @@ $link-hover-color: $secondary;
   display: inline-block;
 }
 
+$btn-focus-width:0px;
 
-
+.page-title, .entry-title {
+  text-align: center
+}
 
 
 @import './bootstrap/scss/bootstrap';

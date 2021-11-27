@@ -231,6 +231,8 @@ function create_posttype() {
 				'add_new'             => __( 'Dodaj novu'),
 				'edit_item'           => __( 'Uredi objavu'),
 				'all_items'           => __( 'Sve objave'),
+				'featured_image'      => __( 'Slika pokojnika'),
+				'set_featured_image'  => __( 'Dodaj sliku'),
             ),
 			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields', 'comments'),
             'public' => true,
